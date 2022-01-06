@@ -1,16 +1,25 @@
 import React from "react"
-import ReactDOM from "react"
+//import ReactDOM from "react"
+
+function TodoItem(){
+  return (
+    <div>
+      <input type="checkbox" />
+      <p>Placeholder text here</p>
+    </div> 
+  )
+}
 
 function MyInfo() {
     return (
-      <div>
+      // className instead of class for css
+      <div className="todo-check">
         <h1>Edgar Munoz</h1>
-        <p>I'm just a small town boy</p>
-        <ul>
-              <li>Item 1</li>
-              <li>Item 2</li>
-              <li>Item 3</li>
-            </ul>
+
+        <TodoItem />
+        <TodoItem />
+        <TodoItem />
+        <TodoItem />
   
   
       </div>

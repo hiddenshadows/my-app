@@ -5,6 +5,15 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 
+// class version rather than function Render{}
+// to use state you need to use this method
+// class Render extends React.Component {
+//   render(){
+//     return(
+//       <App />
+//     )
+//   }
+// }
 
 ReactDOM.render(
   <React.StrictMode>
@@ -12,7 +21,6 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root')
 );
-
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

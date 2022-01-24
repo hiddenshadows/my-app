@@ -6,6 +6,8 @@ import React from 'react';
 import Header from "./Header"
 import MyInfo from "./MyInfo"
 import Footer from "./Footer"
+import Joker from './joke'
+import Product from './product'
 
 function App() {
   const styles = {
@@ -25,6 +27,8 @@ function App() {
     <div>
       <h1 style={styles}>You are {underage} underage</h1>
       <Header />
+      <Joker />
+      <Product />
       <MyInfo />
       <Footer />
     </div>

@@ -1,23 +1,53 @@
 import React from "react"
-import TodoItem from './Todoitem'
-import todosData from "./todosData"
+
+const todosData = [
+    {
+      id: 1,
+      text: "Take out the trash",
+      completed: true
+    },
+    {
+      id: 2,
+      text: "Grocery shopping",
+      completed: false
+    },
+    {
+      id: 3,
+      text: "Clean gecko tank",
+      completed: false
+    },
+    {
+      id: 4,
+      text: "Mow lawn",
+      completed: true
+    },
+    {
+      id: 5,
+      text: "Catch up on TV show",
+      completed: false
+    }
+  ]
 
 
+//old still works
+function TodoItem(props){
+    const style = {
+        fontStyle: "italic",
+        color: "#cdcdcd",
+        textDecoration: "line-through"
+    }
+  return (
+    <div>
+      <input 
+        type="checkbox" 
+        checked={props.item.completed} 
+        onChange={() => props.handleChange(props.item.id)}/>
+      <p style={props.item.completed ? style : null}>{props.item.text}</p>
+    </div> 
+  )
+}
 
-// old could still work
-// function TodoItem(props){
-//   return (
-//     <div>
-//       <input 
-//         type="checkbox" 
-//         checked={props.item.completed} 
-//         onChange={() => props.handleChange(props.item.id)}/>
-//       <p>{props.item.text}</p>
-//     </div> 
-//   )
-// }
-
-// new still works
+// new same way as above, still works
 // class TodoItem extends React.Component {
 //   // takes in props
 //   // constructor() {
@@ -37,34 +67,39 @@ import todosData from "./todosData"
 // }
 
 class MyInfo extends React.Component {
-  constructor(){
-    super()
-    this.state = {
-      todos: todosData
-    }
-    // NEED THIS TO CHANGE STATE
-    this.handleChange = this.handleChange.bind(this);
+    constructor(){
+        super()
+        this.state = {
+            todos: todosData
+        }
+        // NEED THIS TO CHANGE STATE
+        this.handleChange = this.handleChange.bind(this);
   }
+    componentDidMount(){
+        fetch("https://swapi.co/api/people/1")
+            .then(response => response.json())
+            .then(data => console.log(data))
+    }
 
     handleChange(id) {
-        this.setState(prevState => {
+        this.setState((prevState) => {
             const updatedTodos = prevState.todos.map(todo => {
                 // loops through all prevState.todos's data and calls each instance todo
                 // if the current todo.id matches the id passed in handleChange then flip it
                 if (todo.id === id) {
                     // flips it
-                    // console.log('changed', id, todo.completed)
                     todo.completed = !todo.completed;
-                    // console.log('changed', id, todo.completed)
                 }
                 return todo;
             })
-            console.log('changed updates', id, updatedTodos)
             return {
                 todos: updatedTodos
             }
         })
     }
+    
+    // Built-in functions
+    // componentDidMount() {}
 
 
     render() {

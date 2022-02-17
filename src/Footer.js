@@ -21,12 +21,19 @@ class Footer extends React.Component {
             age: "13",
             isLoggedIn: false
         }
+        this.handleClick = this.handleClick.bind(this);
     }
+
+    handleClick() {
+        this.setState(prevState => {
+            return{
+                isLoggedIn: !prevState.isLoggedIn
+            }
+        })
+    }
+
     render() {
-        let loggedIn = 'out'
-        if(this.state.isLoggedIn){
-            loggedIn = 'in'
-        }
+        let loggedIn = this.state.isLoggedIn ? "in" : "out";
         return (
             // double {{}}
             // outer ones denote js while inner ones denote object
@@ -36,6 +43,9 @@ class Footer extends React.Component {
                     Footing
                 </footer>
                 <h1>You are currently logged {loggedIn}</h1>
+                <button onClick={() => this.handleClick(this.state.isLoggedIn)}>
+                    log {this.state.isLoggedIn ? "out" : "in"} 
+                </button>
                 <h3>{this.state.name}</h3>
                 <p>{this.state.age}</p>
                 <br/>

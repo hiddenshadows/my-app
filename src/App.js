@@ -11,21 +11,31 @@ import Product from './product'
 
 function App() {
   const styles = {
-    color: "#2E0927",
-    backgroundColor: "#001"
+    color: "##FFFFFF",
+    backgroundColor: "#000000"
   }
 
-  let age = 20;
-  let underage = "";
-  if(age >= 21){
-    underage = "not";
-    styles.color = "#4E4"
+  let date = new Date();
+  let hours = date.getHours();
+  let message = "";
+  if(hours < 12 && hours > 5){
+    message= "Good Morning";
+    styles.color = "#D3FF00";
+    styles.backgroundColor = "#0098FF";
     styles.fontSize = "20px"
+  } else if (hours >= 12 && hours < 7) {
+    message= "Good afternoon!";
+    styles.color = "#01FDFF";
+    styles.backgroundColor = "#0301FF";
+  } else {
+    message = "Good Night";
+    styles.color = "#002C99";
+    styles.backgroundColor = "#6D0099";
   }
 
   return (
     <div>
-      <h1 style={styles}>You are {underage} underage</h1>
+      <h1 style={styles}>{message}</h1>
       <Header />
       <Joker />
       <Product />
